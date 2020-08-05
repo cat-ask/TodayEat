@@ -1,0 +1,85 @@
+/* Popup */
+#Popup{opacity: 0;}
+
+#Popup.open{opacity: 1;}
+
+#PopupBox{
+    position: fixed;
+    z-index: 101;
+    top: -120%;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 500px;
+    transition: 0.8s all;
+}
+
+#PopupBackground{
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.8s all;
+}
+
+#Popup.open ~ #PopupBackground{opacity: 1;}
+
+#Popup.open > #PopupBox{top: 10%}
+
+#PopupBoxTitle{
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#PopupContent{
+    padding: 20px;
+}
+
+#PopupButtonBox{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.PopupButton{
+    margin: 0 5px;
+    color: #fff;
+}
+.PopupCloseBtn{background-color: #aaa;}
+.PopupSubmitBtn{background-color: #555;}
+
+.PopupCloseBtn:hover,.PopupSubmitBtn:hover{background-color: #000;}
+
+#PopupCloseCross{
+    background-color: #fff;
+    position: absolute;
+    top: 20px;
+    padding: 0;
+    right: 20px;
+}
+
+/* Toast */
+#Toast{
+    position: fixed;
+    bottom: 10%;
+    opacity: 1;
+    z-index: 200;
+    background-color: #F70000;
+    border-radius: 5px;
+    padding: 10px 30px;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+    color: #fff;
+    transition: 0.8s all;
+}
+
+#Toast.close{
+    opacity: 0;
+    bottom: 0%;
+}

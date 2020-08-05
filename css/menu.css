@@ -1,0 +1,180 @@
+/* AddMenu */
+#AddMenuBox{
+    width: 40%;
+    display: inline-block;
+    max-width: 450px;
+    min-width: 420px;
+    flex-grow: 0;
+}
+
+#AddMenuBoxForm{
+    width: 90%;
+    margin: 0 auto;
+}
+
+#AddMenuBoxForm > .FormInput{width: 100%;}
+
+#AddMenuButton{
+    background-color: #555;
+    color: #fff;
+}
+
+#AddMenuButton:hover{
+    background-color: #000;
+}
+
+#MenuCateBox{
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative;
+}
+
+#MenuCate{
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    width: calc(100% - 48px);
+    border-right: 1px solid #ddd;
+    display: inline-block;
+}
+
+#MenuCateAdd{
+    width: 44px;
+    border-radius: 0;
+    background-color: #fff;
+    padding: 10px;
+}
+
+#MenuCateIcon{
+    position: absolute;
+    right: 60px;
+    top: calc(25%);
+    font-size: 25px;
+    transition: 0.3s all;
+    transform: rotate(0deg);
+}
+
+#MenuCateBox.open #MenuCateIcon{transform: rotate(180deg);}
+#MenuCateBox.open ~ #MenuCateList{
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+#MenuCateList{
+    width: calc(100% - 48px);
+    border-radius: 5px;
+    margin: 10px 0;
+    height: 0px;
+    overflow: hidden;
+    transition: 0.3s all;
+}
+
+.MenuCateItem{
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.MenuCateItem > .CheckBox{visibility: hidden; margin-right: 20px;}
+
+.MenuCateItem.check .CheckBox{visibility: visible;}
+
+.MenuCateItem:hover{background-color: #f7f7f7;}
+
+.MenuCateDel{
+    padding: 0;
+    float: right;
+    background-color: #fff;
+}
+
+#AddMenuButtonBox{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#MenuCateAddName{
+    width: 100%;
+}
+
+/* MenuList */
+#MenuListBox{
+    width: 60%;
+    min-width: 420px;
+    display: inline-block;
+    flex-grow: 0;
+}
+
+.MenuListCate{
+    border-radius: 5px;
+    border: 1px solid #fff;
+    transition: 0.3s all;
+}
+
+.MenuListCateTitleBox{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding: 10px 0;
+    transition: 0.3s all;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.MenuListCateTitleBox:hover{background-color: #f7f7f7;}
+
+.MenuListCateOpenIcon{
+    float: right;
+    transition: 0.3s all;
+    transform: rotate(-90deg);
+    font-size: 20px;
+    margin: 5px;
+}
+
+.MenuListItemBox{
+    transition: 0.3s all;
+    width: 100%;
+    overflow: hidden;
+}
+
+.MenuListCate.close .MenuListItemBox{height: 0;}
+
+.MenuListCate.close .MenuListCateTitleBox{border: none;}
+
+.MenuListCate.close .MenuListCateOpenIcon{transform:rotate(0deg);}
+
+.MenuListCateTitle{color: #aaa;cursor: pointer;}
+
+.MenuListCate:hover{border: 1px solid #ddd;}
+
+.MenuListCateCheck{margin: 5px 10px;}
+
+.MenuListCateCheck:checked ~ .MenuListCateTitle{color: #000;}
+
+.MenuListItemCheck{margin: 0 10px;}
+
+.MenuListItemName{color: #aaa;}
+
+.MenuListItemCheck:checked ~ .MenuListItemName{color: #000;}
+
+.MenuListItemDel{
+    background-color: #fff;
+    padding: 0;
+    float: right;
+}
+
+.MenuListItem{
+    height: 60px;
+    padding: 20px;
+    background-color: #fff;
+    transition: 0.2s all;
+}
+
+.MenuListItem:hover{background-color: #f7f7f7;}
+
+#MenuListNot{
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px 0;
+}

@@ -1,0 +1,115 @@
+/* Default */
+@charset 'UTF-8';
+*{
+    margin: 0;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+    font-family: "나눔스퀘어라운드";
+}
+
+a{text-decoration: none;}
+ul,ol{list-style: none;}
+i{cursor: pointer;}
+
+html{
+    background-color: #f3f3f3;
+}
+
+button{
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s all;
+    padding: 10px 20px;
+}
+
+/* header */
+header{
+    background-color: #333;
+    width: 100%;
+    height: 70px;
+    display: flex;
+}
+
+header *{color: #fff;}
+
+header > div{
+    height: 100%;
+    padding: 20px;
+}
+
+#logo{width: 20%;}
+
+#user{
+    width: 80%;
+    text-align: right;
+}
+
+#user > *:first-child{margin-right: 20px;}
+
+#Login,#Join{
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    transition: 0.3s all;
+}
+
+#Login:hover,#Join:hover{
+    background-color: #eee;
+}
+
+/* content */
+
+#Content{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.ContentBox{
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    transition: 0.2s;
+    display: inline-block;
+    margin: 20px;
+}
+
+.ContentBox:hover{box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);}
+
+.ContentBoxTitle{
+    padding: 15px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.ContentBoxContent{
+    padding: 20px 10px;
+}
+
+.ContentBoxFooter{
+    margin-top: 40px;
+    width: 100%;
+}
+
+.FormLabel{
+    display: block;
+    margin: 3px 0;
+    font-size:1.1em;
+    color: #444;
+}
+
+.FormInput{
+    padding: 15px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
