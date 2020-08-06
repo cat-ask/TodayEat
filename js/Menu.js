@@ -1,9 +1,19 @@
 class Menu{
-
     static system = new System();
+    //,"프리미엄","고메이","사각도시락-고기고기시리즈","사각도시락-모둠시리즈","사각도시락-밥","보울도시락-마요","보울도시락-카레","보울도시락-덮밥","보울도시락-철판볶음밥","보울도시락-프리미엄찌개","보울도시락-비빔밥","보울도시락-어린이도시락","실속반찬","스낵시리즈","쉐이크샐러드","간식안주시리즈","미니반찬"
     static MenuCateList = ["기본"];
     static selectCate = "기본";
-    static MenuList = {"기본":{"item":[],"check":true}};
+    static MenuList = {
+        name:"",
+        menu:{
+            "기본":{
+                "item":[],
+                "check":true
+            }
+        }
+    };
+    static MenuListAll = {};
+    static MenuListAllNames = [];
 
     MenuEvent(){
         document.querySelector("#MenuCate").addEventListener("click",()=>{this.MenuCateSelect();});
@@ -14,6 +24,10 @@ class Menu{
         document.querySelector("#AddMenuButton").addEventListener("click",()=>{this.MenuAdd();});
         
         document.querySelector("#MenuPrice").addEventListener("keyup",()=>{this.MenuPriceChange();});
+
+        document.querySelector("#MenuRandSetBtn").addEventListener("click",()=>{new Rand()});
+
+        document.querySelector("#MenuListOptionIcon").addEventListener("click",()=>{new Option()});
     }
 
     // MenuList
@@ -22,8 +36,8 @@ class Menu{
     MenuListCateCheck(target){
         let val = target.value,flag = target.checked;
 
-        Menu.MenuList[val].check = flag;
-        Menu.MenuList[val].item.forEach(x=>{x.check = flag;});
+        Menu.MenuList.menu[val].check = flag;
+        Menu.MenuList.menu[val].item.forEach(x=>{x.check = flag;});
 
         let checkboxs = document.querySelectorAll("#"+target.parentNode.parentNode.id+"> .MenuListItemBox > .MenuListItem> .MenuListItemCheck");
         checkboxs.forEach(x=>{x.checked = flag;});
@@ -32,7 +46,7 @@ class Menu{
     // MenuListItemCheck
     MenuListItemCheck(target){
         let val = target.getAttribute("target-cate"),name = target.value,flag = target.checked,checkflag = false;
-        let list = Menu.MenuList[val].item;
+        let list = Menu.MenuList.menu[val].item;
         
         list.forEach(x=>{
             if(x.name == name) x.check = flag;
@@ -41,35 +55,35 @@ class Menu{
         
         let checkboxs = document.querySelector("#"+target.parentNode.parentNode.parentNode.id+"> .MenuListCateTitleBox > .MenuListCateCheck");
         checkboxs.checked = checkflag;
-        Menu.MenuList[val].check = checkflag;
+        Menu.MenuList.menu[val].check = checkflag;
     }
 
     // MenuListItemCheckConnectCateCheck
     MenuListItemCheckConnectCateCheck(cate){
-        let list = Menu.MenuList[cate].item,checkflag = false;
+        let list = Menu.MenuList.menu[cate].item,checkflag = false;
         
         list.forEach(x=>{if(x.check == true) checkflag = true; });
         
         let checkboxs = document.querySelector("#MenuList"+cate+"> .MenuListCateTitleBox > .MenuListCateCheck");
         if(checkboxs)checkboxs.checked = checkflag;
-        Menu.MenuList[cate].check = checkflag;
+        Menu.MenuList.menu[cate].check = checkflag;
     }
 
     // menuupdate
     MenuUpdate(cate){
         let flag = 0;
-        Menu.MenuCateList.forEach(x=>{flag += Menu.MenuList[x].item.length;});
+        Menu.MenuCateList.forEach(x=>{flag += Menu.MenuList.menu[x].item.length;});
 
         if(flag > 0 && document.querySelector("#MenuListNot")) document.querySelector("#MenuList").removeChild(document.querySelector("#MenuListNot"));
 
         if(flag == 0){
             document.querySelector("#MenuList").innerHTML="";
             let dom = document.createElement("div");
-            dom.innerHTML = `<p id="MenuListNot">현재 등록된 메뉴가 없습니다!</p>`;
+            dom.innerHTML = `<p id="MenuListNot" class="NotAlert">현재 등록된 메뉴가 없습니다!</p>`;
             document.querySelector("#MenuList").appendChild(dom.firstChild);
         }else{
             if(cate !== undefined && cate !== null){
-                if(Menu.MenuList[cate].item.length == 0) document.querySelector("#MenuList").removeChild(document.querySelector("#MenuList"+cate));
+                if(Menu.MenuList.menu[cate].item.length == 0) document.querySelector("#MenuList").removeChild(document.querySelector("#MenuList"+cate));
                 else this.MenuListItemProcess(cate);
             }else{
                 document.querySelector("#MenuList").innerHTML="";
@@ -80,9 +94,9 @@ class Menu{
 
     // MenuLsitItemProcess
     MenuListItemProcess(cate){
-        let list = Menu.MenuList[cate].item;
+        let list = Menu.MenuList.menu[cate].item;
         
-        if(Menu.MenuList[cate].item.length >0){
+        if(Menu.MenuList.menu[cate].item.length >0){
             if(!document.querySelector("#MenuList"+cate)){
                 let dom = this.MenuListCateMake(cate);
 
@@ -103,14 +117,14 @@ class Menu{
             });
 
             document.querySelector("#MenuList"+cate+">.MenuListCateTitleBox>.MenuListCateCheck").checked = true;
-            let height = Menu.MenuList[cate].item.length;
+            let height = Menu.MenuList.menu[cate].item.length;
             list_box.style.height = (height * 60)+"px";
         }
     }
 
     // MenuListItemOpen
     MenuListItemOpen(target){
-        let val = target.id.substr(8,target.id.length),height = Menu.MenuList[val].item.length;
+        let val = target.id.substr(8,target.id.length),height = Menu.MenuList.menu[val].item.length;
 
         if(target.classList.contains("close")){
             target.querySelector(".MenuListItemBox").style.height = (height * 60)+"px";
@@ -140,10 +154,10 @@ class Menu{
     // menudel
     MenuDel(target){
         let cate = target.getAttribute("target-cate"),name = target.getAttribute("target");
-        let list = Menu.MenuList[cate].item,flag = -1;
+        let list = Menu.MenuList.menu[cate].item,flag = -1;
         list.forEach((x,idx)=>{if(x.name == name) flag = idx;});
         if(flag !== -1) list.splice(flag,1);
-        Menu.MenuList[cate].item = list;
+        Menu.MenuList.menu[cate].item = list;
         this.MenuUpdate(cate);
         this.MenuListItemCheckConnectCateCheck(cate);
     }
@@ -153,7 +167,7 @@ class Menu{
         let dom = document.createElement("div");
         dom.innerHTML = `<div class="MenuListItem">
                             <input type="checkbox" class="MenuListItemCheck" value="${name}" target-cate="${cate}" checked="${check}">
-                            <span class="MenuListItemName">${name} - [${price}원]</span>
+                            <p class="MenuListItemName">${name} <span class="MenuListItemPrice">${price}원</span></p>
                             <button class="MenuListItemDel" target="${name}" target-cate="${cate}"><i class="fas fa-times" target="${name}" target-cate="${cate}"></i></button>
                         </div>`;
         dom.querySelector(".MenuListItemCheck").checked = check;
@@ -175,10 +189,10 @@ class Menu{
 
         if(name == "" || price == "" || cate == "") return Menu.system.MakeToast("값을 입력해주세요!");
 
-        Menu.MenuList[cate].item.forEach(x=>{if(x.name == name)flag = 1});
+        Menu.MenuList.menu[cate].item.forEach(x=>{if(x.name == name)flag = 1});
         
         if(flag) return Menu.system.MakeToast("이미 등록된 메뉴입니다!");
-        Menu.MenuList[cate].item.push({"name":name,"price":parseInt(price),"cate":cate,"check":true});
+        Menu.MenuList.menu[cate].item.push({"name":name,"price":parseInt(price),"cate":cate,"check":true});
 
         MenuAddForm.MenuName.value = "";
         MenuAddForm.MenuPrice.value = "";
@@ -230,7 +244,7 @@ class Menu{
         if(Menu.selectCate == val) Menu.selectCate = "기본";
         let flag = -1;
         Menu.MenuCateList.forEach((x,idx)=>{if(x == val) flag = idx;});
-        delete Menu.MenuList[val];
+        delete Menu.MenuList.menu[val];
         if(flag != -1) Menu.MenuCateList.splice(flag,1);
         this.MenuCateChange(Menu.selectCate);
         this.MenuUpdate();
@@ -261,7 +275,7 @@ class Menu{
         Menu.MenuCateList.forEach(x=>{if(value == x) flag = true;});
         if(flag) Menu.system.MakeToast("이미 카테고리에 있습니다!");
         else{
-            Menu.MenuList[value] = {"item":[],"check":true};
+            Menu.MenuList.menu[value] = {"item":[],"check":true};
             Menu.MenuCateList.push(value);
 
             if(document.querySelector("#MenuCateBox").classList.contains("open")) this.MenuCateClose();

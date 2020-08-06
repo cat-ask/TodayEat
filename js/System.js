@@ -67,7 +67,7 @@ class System{
             if(document.querySelector("#Toast")) document.querySelector("#Toast").classList.add("close");
             setTimeout(()=>{
                 if(document.querySelector("#Toast")) document.querySelector("#wrap").removeChild(document.querySelector("#Toast"));
-            },800);
+            },600);
         },800);
     }
 }

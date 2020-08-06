@@ -10,13 +10,16 @@
     <link rel="stylesheet" href="css/menu.css">
 
     <script src="https://kit.fontawesome.com/804f9c1a56.js" crossorigin="anonymous"></script>
-    <script src="js/App.js"></script>
     <script src="js/System.js"></script>
     <script src="js/Menu.js"></script>
+    <script src="js/Rand.js"></script>
+    <script src="js/Option.js"></script>
+    <script src="js/App.js"></script>
     
 </head>
 <body>
     <div id="wrap">
+
         <header>
             <div id="logo">LOGO</div>
             <div id="user">
@@ -25,45 +28,71 @@
             </div>
         </header>
         <div id="Content">
-            <!-- AddMenu -->
-            <div id="AddMenuBox" class="ContentBox">
-                <div class="ContentBoxTitle">
-                    <h2>메뉴 추가</h2>
-                </div>
-                <div class="ContentBoxContent">
-                    <form name="AddMenuBoxForm" id="AddMenuBoxForm">
-                        <label for="MenuName" class="FormLabel">이름</label>
-                        <input type="text" id="MenuName" class="FormInput" placeholder="이름을 입력해주세요">
-                        
-                        <label for="MenuPrice" class="FormLabel">가격</label>
-                        <input type="text" id="MenuPrice" class="FormInput" min="1" placeholder="가격을 입력해주세요">
+            <div id="MenuControlPan">
+                <!-- AddMenu -->
+                <div id="AddMenuBox" class="ContentBox">
+                    <div class="ContentBoxTitle">
+                        <h2>메뉴 추가</h2>
+                    </div>
+                    <div class="ContentBoxContent">
+                        <form name="AddMenuBoxForm" id="AddMenuBoxForm">
+                            <label for="MenuName" class="FormLabel">이름</label>
+                            <input type="text" id="MenuName" class="FormInput" placeholder="이름을 입력해주세요">
+                            
+                            <label for="MenuPrice" class="FormLabel">가격</label>
+                            <input type="text" id="MenuPrice" class="FormInput" min="1" placeholder="가격을 입력해주세요">
 
-                        <label for="MenuCate" class="FormLabel">카테고리</label>
-                        <div id="MenuCateBox">
-                            <p id="MenuCate">기본</p>
-                            <button id="MenuCateAdd" type="button"><i class="fas fa-plus"></i></button>
-                            <i class="fas fa-angle-down" id="MenuCateIcon"></i>
-                        </div>
-                        <div id="MenuCateList"></div>
-                    </form>
+                            <label for="MenuCate" class="FormLabel">카테고리</label>
+                            <div id="MenuCateBox">
+                                <p id="MenuCate">기본</p>
+                                <button id="MenuCateAdd" type="button"><i class="fas fa-plus"></i></button>
+                                <i class="fas fa-angle-down" id="MenuCateIcon"></i>
+                            </div>
+                            <div id="MenuCateList"></div>
+                        </form>
+                    </div>
+
+                    <div class="ContentBoxFooter" id="AddMenuButtonBox">
+                        <button id="AddMenuButton">추가하기</button>
+                    </div>
                 </div>
 
-                <div class="ContentBoxFooter" id="AddMenuButtonBox">
-                    <button id="AddMenuButton">추가하기</button>
+                <!-- MenuListList -->
+                <div class="ContentBox" id="MenuListListBox">
+                    <div class="ContentBoxTitle" id="MenuListListBoxTitle">
+                        <h2>메뉴 리스트</h2>
+                    </div>
+                    <div class="ContentBoxContent" id="MenuListList">
+                        <p id="MenuListListNot" class="NotAlert">현재 등록된 메뉴 리스트가 없습니다!</p>
+                    </div>
                 </div>
             </div>
 
             <!-- MenuList -->
             <div class="ContentBox" id="MenuListBox">
-                <div class="ContentBoxTitle">
+                <div class="ContentBoxTitle" id="MenuListBoxTitle">
                     <h2>메뉴</h2>
+                    <div id="MenuListControl">
+                        <div id="MenuListOption">
+                            <i class="fas fa-ellipsis-v" id="MenuListOptionIcon"></i>
+                            <div id="MenuListOptionBox">
+                                <p class="MenuListOptionItem" id="MenuListSave">저장하기</p>
+                                <p class="MenuListOptionItem" id="MenuListOtherSave">다른 이름으로 저장하기</p>
+                                <p class="MenuListOptionItem" id="MenuListReset">초기화</p>
+                                <p class="MenuListOptionItem" id="MenuListOtherOpen">다른 메뉴 불러오기</p>
+                            </div>
+                        </div>
+                        <button id="MenuRandSetBtn">뽑기 시작 <i class="fas fa-angle-right"></i></button>
+                    </div>
                 </div>
                 <div class="ContentBoxContent" id="MenuList">
-                    <p id="MenuListNot">현재 등록된 메뉴가 없습니다!</p>
+                    <p id="MenuListNot" class="NotAlert">현재 등록된 메뉴가 없습니다!</p>
                 </div>
 
             </div>
+
         </div>
+
     </div>
 </body>
 </html>

@@ -1,11 +1,15 @@
-/* AddMenu */
-#AddMenuBox{
+/* MenuControlPan */
+#MenuControlPan{
     width: 40%;
-    display: inline-block;
-    max-width: 450px;
     min-width: 420px;
+    max-width: 450px;
     flex-grow: 0;
+    display: inline-block;
 }
+
+
+/* AddMenu */
+#AddMenuBox{width: 100%;}
 
 #AddMenuBoxForm{
     width: 90%;
@@ -169,12 +173,256 @@
     padding: 20px;
     background-color: #fff;
     transition: 0.2s all;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
 }
 
 .MenuListItem:hover{background-color: #f7f7f7;}
 
-#MenuListNot{
+.NotAlert{
     text-align: center;
     background-color: #f7f7f7;
     padding: 20px 0;
 }
+
+#MenuListBoxTitle{
+    display: flex;
+    justify-content: space-between;
+}
+
+#MenuRandSetBtn{
+    background-color: #555;
+    color: #fff;
+    transition: 0.3s all;
+}
+
+#MenuRandSetBtn > i{
+    color: #fff;
+    margin-left: 10px;
+}
+
+#MenuRandSetBtn:hover{background-color: #000;}
+
+.MenuPriceAreaBox{
+    width: 100%;
+    margin-top: 10px;
+}
+
+.MenuPriceAreaItem{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+.MenuPriceAreaItem > .FormLabel{
+    margin: 0 10px;
+    line-height: 60px;
+}
+
+#MenuPriceMin,#MenuPriceMax{
+    width: 100%;
+}
+
+#MenuRandSetForm > .FormInput{width: 100%;}
+
+#MenuRandOverlapBox{
+    margin-top: 10px;
+    overflow: hidden;
+    height: 0px;
+    transition: 0.3s all;
+}
+
+#MenuRandOverlapBox.open{height: 20px;}
+
+.MenuListItemPrice{
+    float: right;
+    margin-right: 20px;
+}
+
+/* Result */
+#MenuResultBackground{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+#MenuResultBackground.open{opacity: 1;}
+
+#MenuResultBox{
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-top: 5%;
+    z-index: 201;
+    position: relative;
+}
+
+#MenuResultTitle{
+    font-size: 30px;
+    text-align: center;
+    padding: 10px 0;
+    padding-bottom: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+}
+
+#MenuResultContent{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.MenuResultItem{
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: #fff;
+    transition: 0.3s all;
+    cursor: pointer;
+}
+
+.MenuResultItem:hover{box-shadow: 5px 5px #ddd;}
+
+.MenuResultItem > *{
+    margin: 5px;
+    font-size: 20px;
+}
+
+.MenuResultItemName{
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#MenuResultFooter{
+    display: flex;
+    justify-content: center;
+}
+
+.MenuResultBtn{
+    padding: 16px 20px;
+    margin: 10px;
+    color: #fff;
+}
+
+#MenuResultAgain{background-color: #777;}
+#MenuResultDelAgain{background-color: #555;}
+#MenuResultClose{background-color: #333;}
+
+#MenuListBOxTitle > h2{line-height: 34px;}
+
+/* MenuListList */
+#MenuListListBox{width: 100%;}
+
+/* MenuControl */
+#MenuListControl{
+    display: flex;
+    justify-content: space-between;
+}
+
+#MenuControlPan > .ContentBox{margin: 20px auto;}
+
+/* MenuOption */
+#MenuListOption{position: relative;}
+#MenuListOptionIcon{
+    font-size: 23px;
+    margin-right: 10px;
+    line-height: 34px;
+}
+#MenuListOptionBox{
+    position: absolute;
+    top: 0px;
+    left: -175px;
+    border-radius: 5px;
+    background-color: #fff;
+    width: 170px;
+    overflow: hidden;
+    height: 0px;
+    transition: 0.3s all;
+}
+
+#MenuListOptionBox.open{
+    height: 150px;
+    border: 1px solid #ddd;
+}
+
+.MenuListOptionItem{
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s all;
+    background-color: #fff;
+}
+
+.MenuListOptionItem:hover{background-color: #eee;}
+
+#MenuListSaveName{width: 100%;}
+
+/* MenuListList */
+
+.MenuListListItem{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    transition: 0.3s all;
+    cursor: pointer;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+
+.MenuListListItem:hover{background-color: #eee;border: 1px solid #ddd;}
+
+.MenuListListTitle{
+    line-height: 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.MenuListListDel{
+    width: 20px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    font-size: 20px;
+}
+
+#MenuListOpenTitle{font-size: 17px;}
+#MenuListOpenWarning{
+    font-size: 11px;
+    margin: 7px 0;
+    color: #CD0000;
+}
+
+.MenuListOpenItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    cursor: pointer;
+    transition: 0.3s all;
+    background-color: #fff;
+}
+
+.MenuListOpenItem:hover{
+    background-color: #eee;
+    border:1px solid #ddd;
+}
+
+.MenuListOpenItemIcon{visibility: hidden;}
+
+.MenuListOpenItem.check .MenuListOpenItemIcon{visibility: visible;}
+

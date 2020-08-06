@@ -6,6 +6,7 @@ class App{
         this.system = new System();
 
         this.menu.MenuEvent();
+        this.menu.MenuUpdate();
     }
 
     event(){
