@@ -36,7 +36,7 @@ header *{color: #fff;}
 
 header > div{
     height: 100%;
-    padding: 20px;
+    padding: 15px;
 }
 
 #logo{width: 20%;}
@@ -48,22 +48,18 @@ header > div{
 
 #user > *:first-child{margin-right: 20px;}
 
-#Login,#Join{
+#Login,#Sign{
     display: inline-block;
-    padding: 5px 20px;
-    background-color: #fff;
     color: #000;
-    border-radius: 5px;
+    background-color: #fff;
+    padding: 10px 20px;
     transition: 0.3s all;
-}
-
-#Login:hover,#Join:hover{
-    background-color: #eee;
+    border-radius: 2px;
 }
 
 /* content */
 
-#Content{
+#content{
     position: relative;
     width: 100%;
     padding: 20px;
@@ -73,7 +69,7 @@ header > div{
     justify-content: space-around;
 }
 
-.ContentBox{
+.content_box{
     background-color: #fff;
     border-radius: 5px;
     padding: 20px;
@@ -82,34 +78,38 @@ header > div{
     margin: 20px;
 }
 
-.ContentBox:hover{box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);}
+.content_box:hover{box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);}
 
-.ContentBoxTitle{
+.content_box_title{
     padding: 15px 10px;
     border-bottom: 1px solid #ddd;
 }
 
-.ContentBoxContent{
-    padding: 20px 10px;
-}
+.content_box_content{padding: 20px 10px;}
 
-.ContentBoxFooter{
-    margin-top: 40px;
+.content_box_footer{
+    margin-top: 10px;
     width: 100%;
 }
 
-.FormLabel{
+.form_label{
     display: block;
     margin: 3px 0;
     font-size:1.1em;
     color: #444;
 }
 
-.FormInput{
+.form_input{
     padding: 15px;
     margin: 5px 0;
     border: 1px solid #ddd;
     background-color: #fff;
     border-radius: 5px;
     margin-bottom: 20px;
+}
+
+.error_word{
+    color: #E57260;
+    font-size: 15px;
+    font-weight: bold;
 }

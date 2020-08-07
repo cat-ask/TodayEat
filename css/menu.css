@@ -1,5 +1,5 @@
-/* MenuControlPan */
-#MenuControlPan{
+/* menu_control_pan */
+#menu_control_pan{
     width: 40%;
     min-width: 420px;
     max-width: 450px;
@@ -7,34 +7,50 @@
     display: inline-block;
 }
 
+#menu_control_pan > .content_box{margin: 20px auto;}
 
-/* AddMenu */
-#AddMenuBox{width: 100%;}
+.not_alert{
+    text-align: center;
+    background-color: #f7f7f7;
+    padding: 20px 0;
+}
 
-#AddMenuBoxForm{
+/* add_menu */
+#add_menu_box{width: 100%;}
+
+#add_menu_box_form{
     width: 90%;
     margin: 0 auto;
 }
 
-#AddMenuBoxForm > .FormInput{width: 100%;}
+#add_menu_box_form > .form_input{width: 100%;}
 
-#AddMenuButton{
+#add_menu_btn{
     background-color: #555;
     color: #fff;
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 15px;
 }
 
-#AddMenuButton:hover{
-    background-color: #000;
-}
+#add_menu_btn:hover{background-color: #000;}
 
-#MenuCateBox{
+/* menu_cate */
+
+#menu_cate_box{
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     position: relative;
 }
 
-#MenuCate{
+#menu_cate_box.open #menu_cate_icon{transform: rotate(180deg);}
+#menu_cate_box.open ~ #menu_cate_list{
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+#menu_cate{
     background-color: #fff;
     border: none;
     cursor: pointer;
@@ -44,14 +60,14 @@
     display: inline-block;
 }
 
-#MenuCateAdd{
+#menu_cate_add_btn{
     width: 44px;
     border-radius: 0;
     background-color: #fff;
     padding: 10px;
 }
 
-#MenuCateIcon{
+#menu_cate_icon{
     position: absolute;
     right: 60px;
     top: calc(25%);
@@ -60,13 +76,7 @@
     transform: rotate(0deg);
 }
 
-#MenuCateBox.open #MenuCateIcon{transform: rotate(180deg);}
-#MenuCateBox.open ~ #MenuCateList{
-    height: auto;
-    border: 1px solid #ddd;
-}
-
-#MenuCateList{
+#menu_cate_list{
     width: calc(100% - 48px);
     border-radius: 5px;
     margin: 10px 0;
@@ -75,60 +85,60 @@
     transition: 0.3s all;
 }
 
-.MenuCateItem{
+.menu_cate_item{
     height: 40px;
     padding: 10px;
     cursor: pointer;
     transition: 0.3s all;
 }
 
-.MenuCateItem > .CheckBox{visibility: hidden; margin-right: 20px;}
+.menu_cate_item>.menu_cate_checkbox{visibility: hidden; margin-right: 20px;}
 
-.MenuCateItem.check .CheckBox{visibility: visible;}
+.menu_cate_item.check .menu_cate_checkbox{visibility: visible;}
 
-.MenuCateItem:hover{background-color: #f7f7f7;}
+.menu_cate_item:hover{background-color: #f7f7f7;}
 
-.MenuCateDel{
+.menu_cate_del{
     padding: 0;
     float: right;
     background-color: #fff;
 }
 
-#AddMenuButtonBox{
-    display: flex;
-    justify-content: flex-end;
-}
-
-#MenuCateAddName{
+#menu_cate_add_name{
     width: 100%;
 }
 
 /* MenuList */
-#MenuListBox{
+#menu_box{
     width: 60%;
     min-width: 420px;
     display: inline-block;
     flex-grow: 0;
 }
 
-.MenuListCate{
+.menu_cate{
     border-radius: 5px;
     border: 1px solid #fff;
     transition: 0.3s all;
+    background-color: #f9f9f9;
 }
 
-.MenuListCateTitleBox{
+.menu_cate.close .menu_item_box{height: 0;}
+.menu_cate.close .menu_cate_title_box{border: none;}
+.menu_cate.close .menu_cate_open_icon{transform:rotate(0deg);}
+.menu_cate:hover{border: 1px solid #ddd;}
+
+.menu_cate_title_box{
     display: grid;
     grid-template-columns: auto 1fr auto;
     padding: 10px 0;
     transition: 0.3s all;
     border-bottom: 1px solid #ddd;
-    background-color: #fff;
 }
 
-.MenuListCateTitleBox:hover{background-color: #f7f7f7;}
+.menu_cate_title_box:hover{background-color: #f7f7f7;}
 
-.MenuListCateOpenIcon{
+.menu_cate_open_icon{
     float: right;
     transition: 0.3s all;
     transform: rotate(-90deg);
@@ -136,84 +146,82 @@
     margin: 5px;
 }
 
-.MenuListItemBox{
+.menu_item_box{
     transition: 0.3s all;
     width: 100%;
     overflow: hidden;
 }
 
-.MenuListCate.close .MenuListItemBox{height: 0;}
+.menu_cate_title{color: #aaa;cursor: pointer;}
 
-.MenuListCate.close .MenuListCateTitleBox{border: none;}
+.menu_cate_check:checked ~ .menu_cate_title{color: #000;}
 
-.MenuListCate.close .MenuListCateOpenIcon{transform:rotate(0deg);}
+.menu_cate_check{margin: 5px 10px;}
 
-.MenuListCateTitle{color: #aaa;cursor: pointer;}
+.menu_item_check{margin: 0 10px;}
 
-.MenuListCate:hover{border: 1px solid #ddd;}
+.menu_item_check:checked ~ .menu_item_name{color: #000;}
 
-.MenuListCateCheck{margin: 5px 10px;}
+.menu_item_name{color: #aaa;}
 
-.MenuListCateCheck:checked ~ .MenuListCateTitle{color: #000;}
-
-.MenuListItemCheck{margin: 0 10px;}
-
-.MenuListItemName{color: #aaa;}
-
-.MenuListItemCheck:checked ~ .MenuListItemName{color: #000;}
-
-.MenuListItemDel{
+.menu_item_del{
     background-color: #fff;
     padding: 0;
     float: right;
 }
 
-.MenuListItem{
+.menu_item{
     height: 60px;
     padding: 20px;
-    background-color: #fff;
+    background-color: #fbfbfb;
     transition: 0.2s all;
     display: grid;
     grid-template-columns: auto 1fr auto;
 }
 
-.MenuListItem:hover{background-color: #f7f7f7;}
+.menu_item:hover{background-color: #f7f7f7;}
 
-.NotAlert{
-    text-align: center;
-    background-color: #f7f7f7;
-    padding: 20px 0;
-}
-
-#MenuListBoxTitle{
+#menu_box_title{
     display: flex;
     justify-content: space-between;
 }
 
-#MenuRandSetBtn{
+#menu_box_title > h2{line-height: 34px;}
+
+#menu_rand_set_form .form_input{
+    width: 100%;
+}
+
+#menu_control{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#menu_rand_set_btn{
     background-color: #555;
     color: #fff;
     transition: 0.3s all;
+    margin-bottom: 20px;
 }
 
-#MenuRandSetBtn > i{
+#menu_rand_set_btn > i{
     color: #fff;
     margin-left: 10px;
 }
 
-#MenuRandSetBtn:hover{background-color: #000;}
+#menu_rand_set_btn:hover{background-color: #000;}
 
-.MenuPriceAreaBox{
+.menu_price_area_box{
     width: 100%;
     margin-top: 10px;
 }
 
-.MenuPriceAreaItem{
+.menu_price_area_item{
     display: grid;
     grid-template-columns: auto 1fr;
 }
 
-.MenuPriceAreaItem > .FormLabel{
+.menu_price_area_item > .form_label{
     margin: 0 10px;
     line-height: 60px;
 }
@@ -224,22 +232,22 @@
 
 #MenuRandSetForm > .FormInput{width: 100%;}
 
-#MenuRandOverlapBox{
+#menu_rand_overlap_box{
     margin-top: 10px;
     overflow: hidden;
     height: 0px;
     transition: 0.3s all;
 }
 
-#MenuRandOverlapBox.open{height: 20px;}
+#menu_rand_overlap_box.open{height: 20px;}
 
-.MenuListItemPrice{
+.menu_item_price{
     float: right;
     margin-right: 20px;
 }
 
 /* Result */
-#MenuResultBackground{
+#menu_result_background{
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
@@ -251,9 +259,9 @@
     transition: 0.8s;
 }
 
-#MenuResultBackground.open{opacity: 1;}
+#menu_result_background.open{opacity: 1;}
 
-#MenuResultBox{
+#menu_result_box{
     width: 80%;
     margin: 0 auto;
     padding: 20px;
@@ -264,7 +272,7 @@
     position: relative;
 }
 
-#MenuResultTitle{
+#menu_result_title{
     font-size: 30px;
     text-align: center;
     padding: 10px 0;
@@ -273,7 +281,7 @@
     border-bottom: 1px solid #ddd;
 }
 
-#MenuResultContent{
+#menu_result_content{
     padding: 20px;
     display: flex;
     justify-content: center;
@@ -281,64 +289,82 @@
     flex-wrap: wrap;
 }
 
-.MenuResultItem{
+.menu_result_item{
     padding: 20px;
-    border: 1px solid #ddd;
     border-radius: 5px;
     margin: 10px;
     background-color: #fff;
     transition: 0.3s all;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #FCC700;
 }
 
-.MenuResultItem:hover{box-shadow: 5px 5px #ddd;}
-
-.MenuResultItem > *{
+.menu_result_item > *{
     margin: 5px;
     font-size: 20px;
 }
 
-.MenuResultItemName{
+.menu_result_item:hover{border: 3px solid #FFE06B;}
+
+.menu_result_item:hover > .menu_result_item_cover{background-color: #FFE06B;}
+
+.menu_result_item_cover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: -5px;
+    left: -5px;
+    background-color: #FCC700;
+    text-align: center;
+    font-size: 100px;
+    color: #fff;
+    font-weight: bold;
+    line-height: 1.5;
+    transition: 0.3s all;
+    opacity: 1;
+}
+
+.menu_result_item_cover.open{opacity: 0;}
+
+.menu_result_item_name{
     margin-top: 20px;
     margin-bottom: 10px;
 }
 
-#MenuResultFooter{
+#menu_result_footer{
     display: flex;
     justify-content: center;
 }
 
-.MenuResultBtn{
+.menu_result_btn{
     padding: 16px 20px;
     margin: 10px;
     color: #fff;
 }
 
-#MenuResultAgain{background-color: #777;}
-#MenuResultDelAgain{background-color: #555;}
-#MenuResultClose{background-color: #333;}
+#menu_result_again{background-color: #555;}
+#menu_result_close{background-color: #333;}
 
-#MenuListBOxTitle > h2{line-height: 34px;}
-
-/* MenuListList */
-#MenuListListBox{width: 100%;}
+/* menu list */
+#menu_list_box{width: 100%;}
 
 /* MenuControl */
-#MenuListControl{
+#menu_list_control{
     display: flex;
     justify-content: space-between;
 }
 
-#MenuControlPan > .ContentBox{margin: 20px auto;}
-
 /* MenuOption */
-#MenuListOption{position: relative;}
-#MenuListOptionIcon{
+#menu_list_option{position: relative;}
+
+#menu_list_option_icon{
     font-size: 23px;
     margin-right: 10px;
     line-height: 34px;
 }
-#MenuListOptionBox{
+#menu_list_option_box{
     position: absolute;
     top: 0px;
     left: -175px;
@@ -350,12 +376,12 @@
     transition: 0.3s all;
 }
 
-#MenuListOptionBox.open{
-    height: 150px;
+#menu_list_option_box.open{
+    height: 113px;
     border: 1px solid #ddd;
 }
 
-.MenuListOptionItem{
+.menu_list_option_item{
     width: 100%;
     padding: 10px;
     font-size: 15px;
@@ -365,13 +391,11 @@
     background-color: #fff;
 }
 
-.MenuListOptionItem:hover{background-color: #eee;}
+.menu_list_option_item:hover{background-color: #eee;}
 
-#MenuListSaveName{width: 100%;}
+#menu_list_save_name{width: 100%;}
 
-/* MenuListList */
-
-.MenuListListItem{
+.menu_list_item{
     display: grid;
     grid-template-columns: 1fr auto;
     width: 100%;
@@ -383,15 +407,15 @@
     background-color: #fff;
 }
 
-.MenuListListItem:hover{background-color: #eee;border: 1px solid #ddd;}
+.menu_list_item:hover{background-color: #eee;border: 1px solid #ddd;}
 
-.MenuListListTitle{
+.menu_list_title{
     line-height: 20px;
     font-size: 17px;
     font-weight: bold;
 }
 
-.MenuListListDel{
+.menu_list_del{
     width: 20px;
     height: 20px;
     background-color: rgba(0, 0, 0, 0);
@@ -399,14 +423,14 @@
     font-size: 20px;
 }
 
-#MenuListOpenTitle{font-size: 17px;}
-#MenuListOpenWarning{
+#menu_list_open_title{font-size: 17px;}
+#menu_list_open_warning{
     font-size: 11px;
     margin: 7px 0;
     color: #CD0000;
 }
 
-.MenuListOpenItem{
+.menu_list_open_item{
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -417,12 +441,22 @@
     background-color: #fff;
 }
 
-.MenuListOpenItem:hover{
+.menu_list_open_item:hover{
     background-color: #eee;
     border:1px solid #ddd;
 }
 
 .MenuListOpenItemIcon{visibility: hidden;}
 
-.MenuListOpenItem.check .MenuListOpenItemIcon{visibility: visible;}
+.menu_list_open_item.check .MenuListOpenItemIcon{visibility: visible;}
 
+#menu_list_title_open_popup_title{
+    color: #CD0000;
+    margin: 10px;
+}
+
+#menu_list_title_open_popup_content{
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+}

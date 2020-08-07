@@ -1,9 +1,9 @@
-/* Popup */
-#Popup{opacity: 0;}
+/* popup */
+#popup{opacity: 0;}
 
-#Popup.open{opacity: 1;}
+#popup.open{opacity: 1;}
 
-#PopupBox{
+#popup_box{
     position: fixed;
     z-index: 101;
     top: -120%;
@@ -13,10 +13,13 @@
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 500px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
     transition: 0.8s all;
 }
 
-#PopupBackground{
+#popup_background{
     z-index: 100;
     position: fixed;
     top: 0;
@@ -28,34 +31,33 @@
     transition: 0.8s all;
 }
 
-#Popup.open ~ #PopupBackground{opacity: 1;}
+#popup.open ~ #popup_background{opacity: 1;}
 
-#Popup.open > #PopupBox{top: 10%}
+#popup.open > #popup_box{top: 10%}
 
-#PopupBoxTitle{
+#popup_box_title{
     padding: 20px;
     border-bottom: 1px solid #ddd;
 }
 
-#PopupContent{
+#popup_content{
     padding: 20px;
 }
 
-#PopupButtonBox{
+#popup_button_box{
     display: flex;
     justify-content: flex-end;
 }
 
-.PopupButton{
+.popup_button{
     margin: 0 5px;
     color: #fff;
 }
-.PopupCloseBtn{background-color: #aaa;}
-.PopupSubmitBtn{background-color: #555;}
+.popup_close_btn{background-color: #aaa;}
 
-.PopupCloseBtn:hover,.PopupSubmitBtn:hover{background-color: #000;}
+.popup_close_btn:hover{background-color: #000;}
 
-#PopupCloseCross{
+#popup_close_cross{
     background-color: #fff;
     position: absolute;
     top: 20px;
@@ -63,11 +65,16 @@
     right: 20px;
 }
 
-/* Toast */
-#Toast{
+/* toast */
+#toast{
     position: fixed;
     bottom: 10%;
     opacity: 1;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 90%;
+    max-width: 400px;
     z-index: 200;
     background-color: #F70000;
     border-radius: 5px;
@@ -79,7 +86,7 @@
     transition: 0.8s all;
 }
 
-#Toast.close{
+#toast.close{
     opacity: 0;
     bottom: 0%;
 }
