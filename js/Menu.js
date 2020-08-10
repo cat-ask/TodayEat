@@ -1,6 +1,4 @@
 class Menu{
-    // "#menu"+cate+"사용하는거 지워야함
-
     static system = new System();
     static menu_cate_list = ["기본"];
     static select_cate = "기본";
@@ -91,8 +89,10 @@ class Menu{
                 dom.querySelector(".menu_cate_open_icon").addEventListener("click",(e)=>{this.menu_item_open(e.target.parentNode.parentNode);});
                 document.querySelector("#menu").appendChild(dom.firstChild);
             }
-
-            let list_box = document.querySelector("#menu"+cate+"> .menu_item_box");
+            let domlist = document.querySelectorAll(".menu_cate");
+            let target = "";
+            domlist.forEach(x=>{if(x.getAttribute("target") == cate) target = x;});
+            let list_box = target.querySelector(".menu_item_box");
             list_box.innerHTML = "";
             list.forEach(y=>{
                 let dom = this.menu_item_make(y);
@@ -102,7 +102,7 @@ class Menu{
                 list_box.appendChild(dom.firstChild);
             });
 
-            document.querySelector("#menu"+cate+">.menu_cate_title_box>.menu_cate_check").checked = true;
+            target.querySelector(".menu_cate_title_box>.menu_cate_check").checked = true;
             let height = Menu.now_menu.list[cate].item.length;
             list_box.style.height = (height * 60)+"px";
         }
@@ -171,18 +171,32 @@ class Menu{
     menu_add(){
         let MenuAddForm = document.add_menu_box_form,flag = 0;
         let name = MenuAddForm.menu_name.value, price = MenuAddForm.menu_price.value,cate = Menu.select_cate;
+        let menu_name = Menu.now_menu.name, menu = Menu.now_menu;
+        
+        let obj = new Object();
+        obj = {"name":name,"price":parseInt(price),"cate":cate,"check":true};
+        
         Menu.select_cate = "기본";
 
         if(name == "" || price == "" || cate == "") return Menu.system.make_toast("값을 입력해주세요!");
 
-        Menu.now_menu.list[cate].item.forEach(x=>{if(x.name == name)flag = 1});
+        menu.list[cate].item.forEach(x=>{if(x.name == name)flag = 1});
         
         if(flag) return Menu.system.make_toast("이미 등록된 메뉴입니다!");
-        Menu.now_menu.list[cate].item.push({"name":name,"price":parseInt(price),"cate":cate,"check":true});
+
+        if(menu_name == "") menu.list[cate].item.push(obj);
+        else{
+            Menu.menu_list[menu_name].list[cate].item.push(obj);
+            menu = Menu.menu_list[menu_name];
+        }
 
         MenuAddForm.menu_name.value = "";
         MenuAddForm.menu_price.value = "";
-        document.querySelector("#menu_cate").innerText = Menu.select_cate;
+        document.querySelector("#menu_cate").innerText = "기본";
+
+        Menu.now_menu = menu;
+
+        console.log(Menu.menu_list);
 
         if(document.querySelector("#menu_cate_box").classList.contains("open")) this.menu_cate_close();
         
