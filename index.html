@@ -11,21 +11,23 @@
 
     <script src="https://kit.fontawesome.com/804f9c1a56.js" crossorigin="anonymous"></script>
     <script src="js/App.js"></script>
+    <script src="js/System.js"></script>
 
     <!-- Menu -->
-    <script src="js/System.js"></script>
     <script src="js/MenuControl.js"></script>
     <script src="js/Menu.js"></script>
-    <script src="js/Cate.js"></script>
-    <script src="js/Rand.js"></script>
-    <script src="js/List.js"></script>
+    <script src="js/MenuCate.js"></script>
+    <script src="js/MenuRand.js"></script>
+    <script src="js/MenuList.js"></script>
+    <script src="js/MenuInfo.js"></script>
+    <script src="js/MenuDB.js"></script>
     
 </head>
 <body>
     <div id="wrap">
 
         <header>
-            <div id="logo">LOGO</div>
+            <div id="logo"><a href="#"><img src="image/logo.png" alt="Logo"></a></div>
             <div id="user">
                 <a href="#" id="Login">Login</a>
                 <a href="#" id="Sign">Sign</a>
@@ -36,7 +38,7 @@
                 <!-- add_menu -->
                 <div id="add_menu_box" class="content_box">
                     <div class="content_box_title">
-                        <h2>메뉴 추가</h2>
+                        <h2>음식 추가</h2>
                     </div>
                     <div class="content_box_content">
                         <form name="add_menu_box_form" id="add_menu_box_form">
@@ -81,6 +83,7 @@
                             <i class="fas fa-ellipsis-v" id="menu_list_option_icon"></i>
                             <div id="menu_list_option_box">
                                 <p class="menu_list_option_item" id="MenuListSave">저장하기</p>
+                                <p class="menu_list_option_item" id="MenuListOtherSave">다른 이름으로 저장하기</p>
                                 <p class="menu_list_option_item" id="MenuListReset">초기화</p>
                                 <p class="menu_list_option_item" id="MenuListOtherOpen">다른 메뉴 불러오기</p>
                             </div>

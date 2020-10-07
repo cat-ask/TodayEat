@@ -3,9 +3,9 @@ class MenuControl{
         this.MenuAllEvent();
         
         this.menu = new Menu();
-        this.list = new List();
-        this.rand = new Rand();
-        this.cate = new Cate();
+        this.list = new MenuList();
+        this.rand = new MenuRand();
+        this.cate = new MenuCate();
 
         this.menu.menu_event();
         this.list.option_event();
@@ -13,6 +13,7 @@ class MenuControl{
 
         this.menu.menu_update();
         this.list.menu_list_update();
+        
     }
 
     MenuAllEvent(){

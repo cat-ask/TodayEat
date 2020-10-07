@@ -55,7 +55,7 @@ class Menu{
 
         if(Menu.now_menu.name !== "") document.querySelector("#menu_box_title > h2").innerHTML = `메뉴 [${Menu.now_menu.name}]`;
         else document.querySelector("#menu_box_title > h2").innerHTML = `메뉴`;
-        
+
         Menu.menu_cate_list.forEach(x=>{flag += Menu.now_menu.list[x].item.length;});
 
         if(flag > 0 && document.querySelector("#menu_not")) document.querySelector("#menu").removeChild(document.querySelector("#menu_not"));
@@ -79,7 +79,6 @@ class Menu{
     // menu_item_process
     menu_item_process(cate){
         let list = Menu.now_menu.list[cate].item;
-        
         if(Menu.now_menu.list[cate].item.length >0){
             if(!document.querySelector("#menu"+cate)){
                 let dom = this.menu_cate_make(cate);
@@ -171,10 +170,9 @@ class Menu{
     menu_add(){
         let MenuAddForm = document.add_menu_box_form,flag = 0;
         let name = MenuAddForm.menu_name.value, price = MenuAddForm.menu_price.value,cate = Menu.select_cate;
-        let menu_name = Menu.now_menu.name, menu = Menu.now_menu;
+        let menu = JSON.parse(JSON.stringify(Menu.now_menu));
         
-        let obj = new Object();
-        obj = {"name":name,"price":parseInt(price),"cate":cate,"check":true};
+        let obj = {"name":name,"price":parseInt(price),"cate":cate,"check":true};
         
         Menu.select_cate = "기본";
 
@@ -184,19 +182,13 @@ class Menu{
         
         if(flag) return Menu.system.make_toast("이미 등록된 메뉴입니다!");
 
-        if(menu_name == "") menu.list[cate].item.push(obj);
-        else{
-            Menu.menu_list[menu_name].list[cate].item.push(obj);
-            menu = Menu.menu_list[menu_name];
-        }
+        menu.list[cate].item.push(obj);
 
         MenuAddForm.menu_name.value = "";
         MenuAddForm.menu_price.value = "";
         document.querySelector("#menu_cate").innerText = "기본";
 
         Menu.now_menu = menu;
-
-        console.log(Menu.menu_list);
 
         if(document.querySelector("#menu_cate_box").classList.contains("open")) this.menu_cate_close();
         

@@ -58,4 +58,28 @@ class System{
             },400);
         },700);
     }
+
+    make_alert(title,content,type){
+        let dom = document.createElement("div");
+        dom.innerHTML = `<div id="system_alert_area">
+                            <div id="system_alert" class="${type}">
+                                <p><span id="alert-title">${title}</span> <span id="alert-content">${content}</span></p>
+                                <button id="alert-close-btn" class="alert-close"><i class="fas fa-times alert-close"></i></button>
+                            </div>
+                        </div>`;
+        dom.querySelector(".alert-close").addEventListener("click",this.close_alert);
+        document.querySelector("#wrap").appendChild(dom.firstChild);
+        document.querySelector("#content").style.paddingTop = "50px";
+        setTimeout(()=>{
+            document.querySelector("#system_alert_area").classList.add("open");
+        },10);
+    }
+
+    close_alert(){
+        document.querySelector("#system_alert_area").classList.remove("open");
+        setTimeout(()=>{
+            document.querySelector("#content").style.paddingTop = "20px";
+            document.querySelector("#wrap").removeChild(document.querySelector("#system_alert_area"));
+        },300);
+    }
 }

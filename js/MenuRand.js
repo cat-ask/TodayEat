@@ -1,4 +1,4 @@
-class Rand extends Menu{
+class MenuRand extends Menu{
     static min = 0;
     static max = 0;
     static num = 1;
@@ -10,36 +10,36 @@ class Rand extends Menu{
     make_rand_list(){
         let flag=true,list = [];
 
-        Rand.list = [];
+        MenuRand.list = [];
         
         Menu.menu_cate_list.forEach(x=>{
             list = Menu.now_menu.list[x];
 
             if(list.check && list.item.length > 0){
                 if(flag){
-                    Rand.min = Rand.max = list.item[0].price;
+                    MenuRand.min = MenuRand.max = list.item[0].price;
                     flag=false;
                 }
 
                 list.item.forEach(item=>{
                     if(item.check){
-                        Rand.list.push(item);
-                        Rand.min = parseInt(item.price) < Rand.min ? parseInt(item.price) : Rand.min;
-                        Rand.max = parseInt(item.price) > Rand.max ? parseInt(item.price) : Rand.max;
+                        MenuRand.list.push(item);
+                        MenuRand.min = parseInt(item.price) < MenuRand.min ? parseInt(item.price) : MenuRand.min;
+                        MenuRand.max = parseInt(item.price) > MenuRand.max ? parseInt(item.price) : MenuRand.max;
                     }
                 });
             }
         });
         
-        this.rand_set_popup(Rand.min,Rand.max);
+        this.rand_set_popup(MenuRand.min,MenuRand.max);
     }
 
     // rand_set_popup
     rand_set_popup(min,max){
-        if(Rand.list.length > 0){
+        if(MenuRand.list.length > 0){
             let body = `<form id="menu_rand_set_form" name="menu_rand_set_form">
                             <label for="menu_rand_num" class="form_label">개수</label>
-                            <input type="number" id="menu_rand_num" class="form_input" min="1" max="${Rand.list.length}" value="1" placeholder="뽑을 개수를 정해주세요!">
+                            <input type="number" id="menu_rand_num" class="form_input" min="1" max="${MenuRand.list.length}" value="1" placeholder="뽑을 개수를 정해주세요!">
 
                             <label for="menu_price_area" class="form_label">가격 범위</label>
                             <div id="menu_price_area_box">
@@ -65,7 +65,7 @@ class Rand extends Menu{
 
             document.querySelector("#menu_rand_btn").addEventListener("click",()=>{this.menu_rand_list_make()});
 
-            document.querySelector("#menu_rand_num").addEventListener("change",()=>{this.menu_rand_set_change("num",1,Rand.list.length);});
+            document.querySelector("#menu_rand_num").addEventListener("change",()=>{this.menu_rand_set_change("num",1,MenuRand.list.length);});
             document.querySelector("#menu_price_min").addEventListener("change",()=>{this.menu_rand_set_change("min",min,max)});
             document.querySelector("#menu_pirce_max").addEventListener("change",()=>{this.menu_rand_set_change("max",min,max)});
             document.querySelector("#menu_rand_over_lap").addEventListener("change",()=>{this.menu_rand_set_change("overlap",0,0)});
@@ -81,11 +81,11 @@ class Rand extends Menu{
         if(mode == "min") min_val = min_val < min ? min : min_val > max_val ? max_val : min_val;
         else if(mode == "max") max_val = max_val > max ? max : max_val < min_val ? min_val : max_val;
         else if(mode == "num") num_val = num_val < min ? min : num_val > max ? max : num_val;
-        else Rand.overlap = document.querySelector("#menu_rand_over_lap").checked;
+        else MenuRand.overlap = document.querySelector("#menu_rand_over_lap").checked;
         
-        Rand.num = rand_num.value = num_val;
-        Rand.min = price_min.value = min_val;
-        Rand.max = price_max.value = max_val;
+        MenuRand.num = rand_num.value = num_val;
+        MenuRand.min = price_min.value = min_val;
+        MenuRand.max = price_max.value = max_val;
 
         if(num_val > 1) document.querySelector("#menu_rand_overlap_box").classList.add("open");
         else{
@@ -99,8 +99,8 @@ class Rand extends Menu{
     menu_rand_list_make(){
         let list = [];
 
-        Rand.list.forEach(x=>{if(x.price >= Rand.min && x.price <= Rand.max) list.push(x);});
-        if(list.length > 0 && Rand.num <= list.length) this.make_result();
+        MenuRand.list.forEach(x=>{if(x.price >= MenuRand.min && x.price <= MenuRand.max) list.push(x);});
+        if(list.length > 0 && MenuRand.num <= list.length) this.make_result();
         else if(list.length > 0) Menu.system.make_toast("해당 조건에 맞는 메뉴가 충분하지 않습니다!");
         else Menu.system.make_toast("해당 조건에 맞는 메뉴가 존재하지 않습니다!");
     }
@@ -109,17 +109,17 @@ class Rand extends Menu{
     menu_rand_list(){
         let list = [],result = [];
 
-        Rand.list.forEach(x=>{if(x.price >= Rand.min && x.price <= Rand.max)list.push(x);});
+        MenuRand.list.forEach(x=>{if(x.price >= MenuRand.min && x.price <= MenuRand.max)list.push(x);});
 
         if(list.length >0){
-            for(let i = 0; i<Rand.num; i++){
+            for(let i = 0; i<MenuRand.num; i++){
                 let rand = Math.floor(Math.random()*(list.length));
                 list[rand].idx = rand;
                 result.push(list[rand]);
-                if(!Rand.overlap) list.splice(rand,1);
+                if(!MenuRand.overlap) list.splice(rand,1);
             }
 
-            Rand.rand_list = result;
+            MenuRand.rand_list = result;
         }
         return result;
     }
@@ -157,8 +157,8 @@ class Rand extends Menu{
     menu_rand_result_all(){
         this.menu_rand_list();
         document.querySelector("#menu_result_content").innerHTML = "";
-        for(let i = 0; i< Rand.rand_list.length; i++){
-            this.make_result_item(Rand.rand_list[i]);
+        for(let i = 0; i< MenuRand.rand_list.length; i++){
+            this.make_result_item(MenuRand.rand_list[i]);
         }
     }
 

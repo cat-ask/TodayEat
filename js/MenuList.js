@@ -1,4 +1,4 @@
-class List extends Menu{
+class MenuList extends Menu{
 
     option_tap(){
         let tap = document.querySelector("#menu_list_option_box");
@@ -13,16 +13,28 @@ class List extends Menu{
     }
 
     option_event(){
-        document.querySelector("#MenuListSave").addEventListener("click",()=>{this.menu_save_popup();});
+        document.querySelector("#MenuListSave").addEventListener("click",()=>{this.menu_save();});
+        document.querySelector("#MenuListOtherSave").addEventListener("click",()=>{this.menu_save_popup()});
         document.querySelector("#MenuListReset").addEventListener("click",this.menu_reset);
         document.querySelector("#MenuListOtherOpen").addEventListener("click",()=>{this.menu_list_open();});
+    }
+
+    // menu_save
+    menu_save(){
+        const name = JSON.parse(JSON.stringify(Menu.now_menu.name));
+        if(name == "") this.menu_save_popup();
+        else{
+            const menu = JSON.parse(JSON.stringify(Menu.now_menu.list));
+            const cate = JSON.parse(JSON.stringify(Menu.menu_cate_list));
+            Menu.menu_list[name].list = menu;
+            Menu.menu_list[name].cate = cate;
+            Menu.system.make_toast("저장됬습니다!");
+        }
     }
 
     // menu_save_popup
     menu_save_popup(){
         if(!document.querySelector("#popup")){
-            const list = Menu.now_menu.list;
-            const cate = Menu.menu_cate_list;
             let body = `<form name="menu_list_save_name_form" id="menu_list_save_name_form">
                             <label for="menu_list_save_name" class="form_label">※메뉴의 이름을 설정해주세요!</label>
                             <input type="text" class="form_input" id="menu_list_save_name" placeholder="이름을 입력해주세요!">
@@ -30,21 +42,20 @@ class List extends Menu{
             let footer = `<button id="menu_list_save_name_btn">확인</button>`;
             Menu.system.popup_open("메뉴 저장",body,footer);
 
-            document.querySelector("#menu_list_save_name_btn").addEventListener("click",()=>{this.menu_save_process(list,cate)});
+            document.querySelector("#menu_list_save_name_btn").addEventListener("click",()=>{this.menu_save_process()});
         }
     }
 
     // menu_save_process
-    menu_save_process(list,cate){
+    menu_save_process(){
+        const list = JSON.parse(JSON.stringify(Menu.now_menu.list));
+        const cate = JSON.parse(JSON.stringify(Menu.menu_cate_list));
         // 깊은 복사(내용을 복사)!!!
-        list = JSON.parse(JSON.stringify(list));
-        cate = JSON.parse(JSON.stringify(cate));
-
-        let now = new Object();
-        Menu.now_menu = new Object();
+        
+        Menu.now_menu = {};
 
         let name = document.querySelector("#menu_list_save_name").value;        
-        now = {"list":list,"cate":cate,"name":name};
+        let now = {"list":list,"cate":cate,"name":name};
 
         if(name == "") return Menu.system.make_toast("이름을 입력해주세요!");
         if(Menu.menu_list.name == name) return Menu.system.make_toast("현재와 같은 이름입니다!");
@@ -107,9 +118,9 @@ class List extends Menu{
         Menu.select_cate = "기본";
         
         // Rand reset
-        Rand.min = Rand.max = 0;
-        Rand.num = 1;
-        Rand.overlap = false;
+        MenuRand.min = MenuRand.max = 0;
+        MenuRand.num = 1;
+        MenuRand.overlap = false;
 
         super.menu_update();
         super.menu_cate_close();
@@ -144,7 +155,7 @@ class List extends Menu{
     menu_list_loading(){
         let item = document.querySelector(".menu_list_open_item.check");
         if(item){
-            let list = Menu.menu_list[item.getAttribute("target")];
+            let list = JSON.parse(JSON.stringify(Menu.menu_list[item.getAttribute("target")]));
 
             Menu.menu_cate_list = list.cate;
             Menu.now_menu = {};
@@ -168,9 +179,7 @@ class List extends Menu{
     menu_list_del(target){
         let name = target.getAttribute("target"),flag = false;
         delete Menu.menu_list[name];
-        Menu.menu_list_names.forEach((x,idx)=>{
-            if(x == name) flag = idx;
-        });
+        Menu.menu_list_names.forEach((x,idx)=>{if(x == name) flag = idx;});
         Menu.menu_list_names.splice(flag,1);
         this.menu_list_update();
     }
@@ -189,15 +198,13 @@ class List extends Menu{
 
     // menu_list_title_open_process
     menu_list_title_open_process(name){
-        let list = new Object();
-        list = {"list":Menu.menu_list[name].list,"cate":Menu.menu_list[name].cate,"name":Menu.menu_list[name].name}
+        const menu = JSON.parse(JSON.stringify(Menu.menu_list[name]));
+        let list = {"list":menu.list,"cate":menu.cate,"name":menu.name}
 
-        Menu.now_menu = new Object();
+        Menu.now_menu = {}
         Menu.now_menu = list;
-        Menu.menu_cate_list = list.cate;
+        Menu.menu_cate_list = menu.cate;
         Menu.select_cate = "기본";
-
-        console.log(Menu.menu_list);
 
         super.menu_update();
 

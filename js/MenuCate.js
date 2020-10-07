@@ -1,4 +1,4 @@
-class Cate extends Menu{
+class MenuCate extends Menu{
     // menu_cate
     cate_event(){
         document.querySelector("#menu_cate").addEventListener("click",()=>{this.menu_cate_sel();});
@@ -16,21 +16,21 @@ class Cate extends Menu{
             super.menu_cate_close();
         }else{
             menu_cate_box.classList.add("open");
-            Cate.menu_cate_list.forEach(x=>{
+            Menu.menu_cate_list.forEach(x=>{
                 let dom = this.menu_cate_make_item(x);
 
                 dom.firstChild.addEventListener("click",(e)=>{this.menu_cate_change(e.target.getAttribute("value"));});
                 if(dom.querySelector(".menu_cate_del")) dom.querySelector(".menu_cate_del").addEventListener("click",(e)=>{this.menu_cate_del_process(x)});
                 menu_cate_list.appendChild(dom.firstChild);
             });
-            menu_cate_list.style.height=(40*Cate.menu_cate_list.length)+"px";
+            menu_cate_list.style.height=(40*Menu.menu_cate_list.length)+"px";
         }
     }
 
     // menu_cate_make_item
     menu_cate_make_item(val){
         let dom = document.createElement("div");
-        let check = val == Cate.select_cate ? "check" : "";
+        let check = val == Menu.select_cate ? "check" : "";
         let delbtn = val == "기본" ? "" : `<button class="menu_cate_del" type="button" target-id="${val}"><i class="fas fa-times"></i></button>`;
         dom.innerHTML = `<div class="menu_cate_item ${check}" value="${val}">
                             <i class="menu_cate_checkbox fas fa-check"></i>
@@ -42,12 +42,12 @@ class Cate extends Menu{
 
     // menu_cate_del_process
     menu_cate_del_process(val){
-        if(Cate.select_cate == val) Cate.select_cate = "기본";
+        if(Menu.select_cate == val) Menu.select_cate = "기본";
         let flag = -1;
-        Cate.menu_cate_list.forEach((x,idx)=>{if(x == val) flag = idx;});
-        delete Cate.now_menu.list[val];
-        if(flag != -1) Cate.menu_cate_list.splice(flag,1);
-        this.menu_cate_change(Cate.select_cate);
+        Menu.menu_cate_list.forEach((x,idx)=>{if(x == val) flag = idx;});
+        delete Menu.now_menu.list[val];
+        if(flag != -1) Menu.menu_cate_list.splice(flag,1);
+        this.menu_cate_change(Menu.select_cate);
         this.menu_update();
     }
 
