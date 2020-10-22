@@ -1,5 +1,6 @@
 class Menu{
     static system = new System();
+    static db = new MenuDB();
     static menu_cate_list = ["기본"];
     static select_cate = "기본";
     static now_menu = {

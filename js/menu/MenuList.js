@@ -26,10 +26,13 @@ class MenuList extends Menu{
         else{
             const menu = JSON.parse(JSON.stringify(Menu.now_menu.list));
             const cate = JSON.parse(JSON.stringify(Menu.menu_cate_list));
+
             Menu.menu_list[name].list = menu;
             Menu.menu_list[name].cate = cate;
             Menu.system.make_toast("저장됬습니다!");
         }
+
+        Menu.db.InsertDB(JSON.parse(JSON.stringify(Menu.now_menu.list)));
     }
 
     // menu_save_popup
